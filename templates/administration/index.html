@@ -1,0 +1,29 @@
+<!-- Index de la seccion Administracion -->
+<!-- Esto es lo primero que se presenta al entrar -->
+{% extends 'base/base.html' %}
+{% load static %}
+
+{% block content %}
+<div class="container-fluid">
+   <div class="row">
+     <div class="col-12">
+       <!-- Default box -->
+       <div class="card card-primary">
+        <div class="card-header">
+          <div class="col-12">
+            <h3 class="index-title">Bienvenidos al Sistema Sistelec</h3>
+          </div>
+          
+        </div>
+        <!-- /.card-header -->
+          <div class="card-body">
+            <img class="img-fluid" src="{% static 'img/cnel/electric_1.jpg' %}" alt="Photo">
+          </div>
+          <!-- /.card-body -->
+
+      </div>
+       <!-- /.card -->
+     </div>
+   </div>
+ </div>
+{% endblock content %}

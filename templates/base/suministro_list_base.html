@@ -1,0 +1,25 @@
+{% extends 'administration/suministro.html' %}
+{% load static %}
+
+
+{% block columns %}
+    <tr>
+        <th scope="col" style="width: 10%;">Empresa</th>
+        <th scope="col" style="width: 10%;">Regional</th>
+        <th scope="col" style="width: 10%;">SubEstacion</th>
+        <th scope="col" style="width: 10%;">Transformador</th>
+        <th scope="col" style="width: 10%;">Alimentadora</th>
+        <th scope="col" style="width: 10%;">Suministro</th>
+        <th scope="col" style="width: 10%;">Cliente</th>
+        <th scope="col" style="width: 10%;">Direccion</th>
+        <th scope="col" style="width: 10%;">Latitud</th>
+        <th scope="col" style="width: 10%;">Longitud</th>
+    </tr>
+{% endblock columns %}
+
+{% block rows %}
+{% endblock rows %}
+
+{% block extra_javascript %}
+   <script src="{% static 'js/administration/suministro/suministro.js' %}"></script>
+{% endblock extra_javascript %}

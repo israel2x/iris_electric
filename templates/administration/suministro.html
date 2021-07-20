@@ -1,0 +1,23 @@
+<!-- Tabla de Suministro -->
+{% extends 'base/base.html' %}
+{% load static %}
+
+{% block content %}
+   <!-- Start Table Suministro Card -->
+   <div class="card card-list-auction">
+      <div class="card-body">
+         <table class="table table-bordered" id="dataSumin">
+            <thead>
+               {% block columns %}
+               {% endblock columns %}
+            </thead>
+            <tbody>
+               {% block rows %}
+               {% endblock rows %}
+            </tbody>
+        </table>
+      </div>
+   </div>
+<!-- End Table Suministro Card -->
+
+{% endblock content %}
