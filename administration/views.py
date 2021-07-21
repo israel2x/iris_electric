@@ -8,8 +8,8 @@ from django.contrib.auth import get_user_model
 
 from .models import Suministro
 
-User = get_user_model()
 
+User = get_user_model()
 
 
 class IndexView(TemplateView):
@@ -48,6 +48,7 @@ class UsuariosView(TemplateView):
             data = []
             for i in User.objects.all():
                data.append(i.toJSON())
+            # print(data)
          else:
             data['error'] = 'Ha ocurrido un error'
       except Exception as e:

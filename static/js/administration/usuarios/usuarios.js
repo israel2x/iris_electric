@@ -17,6 +17,7 @@ $(function () {
            {"data": "l_name"},
            {"data": "email"},
            {"data": "username"},
+           {"data": "perfil"},
        ],
        columnDefs: [
         { "width": "10%", "targets": 0 }
