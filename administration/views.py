@@ -5,6 +5,8 @@ from django.utils.decorators import method_decorator
 from django.views.decorators.csrf import csrf_exempt
 from django.http import JsonResponse, HttpResponse, HttpResponseRedirect
 from django.contrib.auth import get_user_model
+from django.contrib.auth.mixins import LoginRequiredMixin
+
 
 from .models import Suministro
 
@@ -12,7 +14,8 @@ from .models import Suministro
 User = get_user_model()
 
 
-class IndexView(TemplateView):
+class IndexView(LoginRequiredMixin, TemplateView):
+   login_url = 'accounts/login/'
    template_name = 'administration/index.html'
 
 

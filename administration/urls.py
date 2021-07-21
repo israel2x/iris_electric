@@ -11,7 +11,7 @@ app_name = 'administration'
 
 urlpatterns = [
    path('', IndexView.as_view(), name='index'),
-   path('usuario/', UsuariosView.as_view(), name='usuarios'),
-   path('suministro/', SuministroView.as_view(), name='suministro'),
+   path('administration/usuario/', UsuariosView.as_view(), name='usuarios'),
+   path('administration/suministro/', SuministroView.as_view(), name='suministro'),
 
 ]

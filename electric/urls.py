@@ -6,12 +6,13 @@ from django.conf.urls.static import static
 
 
 urlpatterns = [
+    # Django config Apps Urls
     path('admin/', admin.site.urls),
-    path('usuarios/', include('django.contrib.auth.urls')),
-    path('usuarios/', include('usuarios.urls', namespace='usuarios')),
+    path('accounts/', include('django.contrib.auth.urls')),
 
-    path('administration/', include('administration.urls', namespace='administration')),
-    
+    # Apps
+    path('', include('administration.urls', namespace='administration')),
+    path('usuarios/', include('usuarios.urls', namespace='usuarios')),
 
 ]
 
