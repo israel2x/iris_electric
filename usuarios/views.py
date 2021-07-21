@@ -3,5 +3,5 @@ from django.views.generic import TemplateView
 
 
 
-class LoginView(TemplateView):
-   pass
+# class LoginView(TemplateView):
+#    pass

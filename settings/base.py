@@ -101,7 +101,9 @@ USE_TZ = True
 
 
 AUTH_USER_MODEL = 'usuarios.CustomUser'
-LOGIN_REDIRECT_URL = 'login'
+LOGIN_REDIRECT_URL = 'administration:index'
+LOGOUT_REDIRECT_URL = 'login'
+
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.0/howto/static-files/
