@@ -4,7 +4,7 @@ from decouple import config
 
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ['iris-energy.herokuapp.com']
 
