@@ -1,0 +1,28 @@
+
+/* Administration - Index */
+.index-title {
+   text-align: center !important;
+}
+.card-body img {
+   width: 100%;
+   height: 380px;
+}
+/* .card-header {
+   color: #205084 !important;
+} */
+
+
+/*------- Administration - Suministro Section -------*/
+.table thead th{
+   font-size: .8em;
+}
+
+.table td{
+   font-size: .8em;
+}
+
+
+/*-------- Login ----------*/
+/* .login-ingresar-btn {
+   justify-content: center;
+} */
