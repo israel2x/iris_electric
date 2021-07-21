@@ -7,20 +7,32 @@
    width: 100%;
    height: 380px;
 }
-/* .card-header {
-   color: #205084 !important;
-} */
 
+.card-header {
+   background-color: #ffea4f !important;
+}
+.card-header h3 {
+   color: #686868;
+   font-weight: bold;
+}
 
 /*------- Administration - Suministro Section -------*/
+.table thead {
+   background-color: #ffea4f;
+}
 .table thead th{
    font-size: .8em;
+   color: #686868;
 }
 
 .table td{
    font-size: .8em;
 }
-
+.page-item.active .page-link {
+   background-color: #ffea4f !important;
+   border-color: #ffea4f;
+   color: #686868;
+}
 
 /*-------- Login ----------*/
 /* .login-ingresar-btn {
