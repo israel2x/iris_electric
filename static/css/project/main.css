@@ -1,3 +1,9 @@
+.message {
+   text-align: center;
+}
+
+
+
 
 /* Administration - Index */
 .index-title {
@@ -35,6 +41,29 @@
 }
 
 /*-------- Login ----------*/
-/* .login-ingresar-btn {
-   justify-content: center;
-} */
+.card-create-auction .card-body p {
+   display: contents;
+}
+
+.button-create-auction {
+   margin-left: 0rem;
+}
+
+/*------ Administration/Usuarios Section -------*/
+.usuarios {
+   background-color: #ffea4f;
+   font-size: bold;
+   color: #686868;
+   font-weight: bold;
+}
+
+
+
+/*----- Administration/Usuarios Creation -----*/
+#CreateUsuario .fluid-container {
+   margin-left: 4rem;
+   margin-right: 4rem;
+}
+.card-form {
+   padding: 3.4rem;
+}

@@ -23,8 +23,10 @@
 
 </head>
 <body class="hold-transition sidebar-mini layout-fixed">
+
 <!-- Site wrapper -->
 <div class="wrapper">
+
   <!-- Navbar -->
   <nav class="main-header navbar navbar-expand navbar-white navbar-light">
     <!-- Left navbar links -->
@@ -48,14 +50,23 @@
         </li>	          
       {% endif %}
 
-      <!-- <li class="nav-item">
-        <a class="nav-link" data-widget="control-sidebar" data-slide="true" href="#" role="button">
-          <i class="fas fa-th-large"></i>
-        </a>
-      </li> -->
+
     </ul>
   </nav>
   <!-- /.navbar -->
+  
+  <div class="message">
+    {% if messages %}
+      {% for message in messages %}
+      <div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
+        {{ message }}
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      {% endfor %}
+    {% endif %}
+  </div>
 
   <!-- Main Sidebar Container -->
   <aside class="main-sidebar sidebar-dark-primary elevation-4">
@@ -158,92 +169,9 @@
                 <i class="right fas fa-angle-left"></i>
               </p>
             </a>
-            <!-- <ul class="nav nav-treeview">
-              <li class="nav-item">
-                <a href="{% static 'charts/chartjs.html' %}" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Reportes</p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="{% static 'charts/flot.html' %}" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Operación</p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="{% static 'charts/inline.html' %}" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Medidores</p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="{% static 'charts/uplot.html' %}" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>uPlot</p>
-                </a>
-              </li>
-            </ul> -->
+
           </li>
-          <!-- <li class="nav-item">
-            <a href="#" class="nav-link">
-              <i class="nav-icon fas fa-tree"></i>
-              <p>
-                UI Elements
-                <i class="fas fa-angle-left right"></i>
-              </p>
-            </a>
-            <ul class="nav nav-treeview">
-              <li class="nav-item">
-                <a href="{% static 'UI/general.html' %}" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>General</p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="{% static 'UI/icons.html' %}" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Icons</p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="{% static 'UI/buttons.html' %}" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Buttons</p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="{% static 'UI/sliders.html' %}" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Sliders</p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="{% static 'UI/modals.html' %}" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Modals & Alerts</p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="{% static 'UI/navbar.html' %}" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Navbar & Tabs</p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="{% static 'UI/timeline.html' %}" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Timeline</p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="{% static 'UI/ribbons.html' %}" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Ribbons</p>
-                </a>
-              </li>
-            </ul>
-          </li> -->
+
           <li class="nav-item">
             <a href="#" class="nav-link">
               <i class="nav-icon fas fa-edit"></i>
@@ -252,32 +180,7 @@
                 <i class="fas fa-angle-left right"></i>
               </p>
             </a>
-            <!-- <ul class="nav nav-treeview">
-              <li class="nav-item">
-                <a href="{% static 'forms/general.html' %}" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>General Elements</p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="{% static 'forms/advanced.html' %}" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Advanced Elements</p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="{% static 'forms/editors.html' %}" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Editors</p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="{% static 'forms/validation.html' %}" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Validation</p>
-                </a>
-              </li>
-            </ul> -->
+
           </li>
           <li class="nav-item">
             <a href="#" class="nav-link">
@@ -287,26 +190,7 @@
                 <i class="fas fa-angle-left right"></i>
               </p>
             </a>
-            <!-- <ul class="nav nav-treeview">
-              <li class="nav-item">
-                <a href="{% static 'tables/simple.html' %}" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Simple Tables</p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="{% static 'tables/data.html' %}" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>DataTables</p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="{% static 'tables/jsgrid.html' %}" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>jsGrid</p>
-                </a>
-              </li>
-            </ul> -->
+
           </li>
 
       </nav>
@@ -321,16 +205,7 @@
     <section class="content-header">
       <div class="container-fluid">
         <div class="row mb-2">
-          <!-- <div class="col-sm-6">
-            <h1>Fixed Layout</h1>
-          </div>
-          <div class="col-sm-6">
-            <ol class="breadcrumb float-sm-right">
-              <li class="breadcrumb-item"><a href="#">Home</a></li>
-              <li class="breadcrumb-item"><a href="#">Layout</a></li>
-              <li class="breadcrumb-item active">Fixed Layout</li>
-            </ol>
-          </div> -->
+
         </div>
       </div><!-- /.container-fluid -->
     </section>

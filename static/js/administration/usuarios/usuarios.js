@@ -18,18 +18,31 @@ $(function () {
            {"data": "email"},
            {"data": "username"},
            {"data": "perfil"},
+           {"data": "perfil"},
+           {"data": "perfil"},
+
        ],
        columnDefs: [
-        { "width": "10%", "targets": 0 }
-        //    {
-        //        targets: [0],
-        //        class: 'text-center',
-        //        orderable: false,
-        //        render: function (data, type, row) {
-        //            var ref_code = '<td><a href="/subasta/' + data + '/" class="btn btn-warning btn-xs btn-flat">'+ data + '</a></td> ';
-        //            return ref_code;
-        //        }
-        //    },
+        { "width": "10%", "targets": 0 },
+           {
+               targets: [5],
+               class: 'text-center',
+               orderable: false,
+               render: function (data, type, row) {
+                var buttons = '<a href="/usuarios/edit-user/' + row.id + '/" class="btn btn-success btn-xs btn-flat"><i class="fas fa-edit"></i></a> ';
+
+                return buttons;
+               }
+           },
+           {
+            targets: [6],
+            class: 'text-center',
+            orderable: false,
+            render: function (data, type, row) {
+                var buttons = '<a href="#" class="btn btn-warning btn-xs btn-flat"><i class="fa fa-lock"></i></a> ';
+                return buttons;
+            }
+        },
        ],
        initComplete: function (settings, json) {
 

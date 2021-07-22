@@ -9,6 +9,7 @@ class CustomUser(AbstractUser):
 
    def toJSON(self):
       item = {}
+      item['id'] = self.pk
       item['f_name'] = self.first_name
       item['l_name'] = self.last_name
       item['email'] = self.email

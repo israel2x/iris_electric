@@ -1,0 +1,83 @@
+{% extends 'base/base.html' %}
+
+
+{% block content %}
+<section id="CreateUsuario">
+   <div class="fluid-container">
+      <div class="row">
+         <div class="col-12">
+            <div class="card-header">
+               <div class="col-12">
+                 <h3 class="index-title">Creacion de Usuarios</h3>
+               </div>
+             </div>
+            <div class="card card-form">
+                  <form action="." method="POST">
+                     {% csrf_token %}
+                     <div class="row">
+                        <div class="col-md-6 mb-3">
+                           <label for="id_username" class="labels-account">Username</label>
+                           <input type="text" name="username" maxlength="150" autofocus class="form-control" id="id_username" required>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                           <div>
+                              <label for="id_email" class="labels-account">Email</label>
+                              <input type="email" name="email" maxlength="254" class="form-control" id="id_email" required>
+                           </div>
+                        </div>
+                     </div>
+                     <div class="row">
+                        <div class="col-md-6">
+                           <div class="row">
+                              <div class="col-md-12 mb-3">
+                                 <label for="id_first_name" class="labels-account">Nombre</label>
+                                 <input type="text" name="first_name" maxlength="30" autofocus class="form-control" id="id_first_name" required>
+                              </div>
+                           </div>
+
+                           <div class="row">
+                              <div class="col-md-12 mb-3">
+                                 <div>
+                                    <label for="id_last_name" class="labels-account">Apellido</label>
+                                    <input type="text" name="last_name" maxlength="150" class="form-control" id="id_last_name" required>
+                                 </div>
+                              </div>
+                           </div>
+                        </div>
+                        <div class="col-sm-6">
+                           <div class="col-12">
+                              <!-- Select multiple-->
+                              <div class="form-group">
+                                <label for="id_groups">Seleccione el Perfil</label>
+                                 {{ form.groups }}
+                              </div>
+                            </div>
+                        </div>
+                     </div>
+
+                     <div class="row">
+                        <div class="col-md-6 mb-3">
+                           <label for="id_password1" class="labels-account">Contraseña</label>
+                           <input type="password" name="password1" maxlength="30" autofocus autocomplete="new-password" class="form-control" id="id_password1" required aria-autocomplete="list">
+                           <span class="helptext"></span>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                           <div>
+                              <label for="id_password2" class="labels-account">Confirmacion de Contraseña</label>
+                              <input type="password" name="password2" maxlength="150" class="form-control" id="id_password2" required autocomplete="new-password">
+                              <span class="helptext">Ingrese nuevamente la contraseña</span>
+                           </div>
+                     </div>
+                     </div>
+                     <div class="row" style="justify-content: center;">
+                        <button class="btn btn-warning create-user-button" type="submit" style="color: #686868; font-weight: bold;">Guardar</button>
+                     </div>
+                  </form>
+            </div>
+         </div>
+      </div>
+
+   </div>
+</section>
+
+{% endblock content %}
