@@ -1,0 +1,28 @@
+{% extends 'base/base.html' %}
+
+
+{% block content %}
+<section id="CreateUsuario">
+   <div class="fluid-container">
+      <div class="row">
+         <div class="col-12">
+            <div class="card-header">
+               <div class="col-12">
+                 <h3 class="index-title">Creación de Perfiles</h3>
+               </div>
+             </div>
+            <div class="card card-form">
+                  <form action="." method="POST">
+                     {% csrf_token %}
+                     {{ form.as_p }}
+                     <div class="row" style="justify-content: center;">
+                        <button class="btn btn-warning create-user-button" type="submit" style="color: #686868; font-weight: bold;">Guardar</button>
+                     </div>
+                  </form>
+            </div>
+         </div>
+      </div>
+
+   </div>
+</section>
+{% endblock content %}

@@ -24,7 +24,7 @@ $(function () {
                class: 'text-center',
                orderable: false,
                render: function (data, type, row) {
-                var buttons = '<a href="/usuarios/edit-user/' + row.id + '/" class="btn btn-success btn-xs btn-flat"><i class="fas fa-edit"></i></a> ';
+                var buttons = '<a href="/usuarios/edit-perfil/' + row.id + '/" class="btn btn-success btn-xs btn-flat"><i class="fas fa-edit"></i></a> ';
 
                 return buttons;
                }

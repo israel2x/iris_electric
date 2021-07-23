@@ -9,7 +9,12 @@ from django.contrib.auth import get_user_model
 from django.contrib import messages
 
 
-from .forms import CustomUserCreationForm, CustomUserChangeForm
+from .forms import (
+   CustomUserCreationForm, CustomUserChangeForm,
+   CreatePerfilForm,
+)
+from .models import Perfiles
+
 User = get_user_model()
 
 
@@ -29,43 +34,6 @@ class CreateUser(LoginRequiredMixin, SuccessMessageMixin, CreateView):
       self.object.groups.set(group_list)
       self.object.save()
       return super(CreateUser, self).form_valid(form)
-
-
-# class EditUser(LoginRequiredMixin, SuccessMessageMixin, UpdateView):
-#    form_class = CustomUserChangeForm
-#    success_url = reverse_lazy('administration:usuarios')
-#    success_message = "Usuario creado exitosamente"
-#    template_name = 'administration/usuarios/edit_user.html'
-
-
-#    def form_valid(self, form):
-#       group_id = self.request.POST.get('groups')
-#       group_list = Group.objects.filter(pk=group_id)
-#       self.object = form.save(commit=False)
-#       self.object.save()
-
-#       self.object.groups.set(group_list)
-#       self.object.save()
-#       return super(EditUser, self).form_valid(form)
-
-
-# class EditUser(LoginRequiredMixin, SuccessMessageMixin, UpdateView):
-#    model = User
-#    form_class = CustomUserChangeForm
-#    success_url = reverse_lazy('administration:usuarios')
-#    success_message = "Usuario creado exitosamente"
-#    template_name = 'administration/usuarios/edit_user.html'
-
-
-#    def form_valid(self, form):
-#       group_id = self.request.POST.get('groups')
-#       group_list = Group.objects.filter(pk=group_id)
-#       self.object = form.save(commit=False)
-#       self.object.save()
-
-#       self.object.groups.set(group_list)
-#       self.object.save()
-#       return super(EditUser, self).form_valid(form)
 
 
 class EditUser(LoginRequiredMixin, SuccessMessageMixin, View):
@@ -105,3 +73,18 @@ class EditUser(LoginRequiredMixin, SuccessMessageMixin, View):
          return redirect('administration:usuarios')
       messages.warning(request, "Los datos fueron actualizado correctamente")
       return redirect('administration:usuarios')
+
+
+class CreatePerfilView(LoginRequiredMixin, SuccessMessageMixin, CreateView):
+   form_class = CreatePerfilForm
+   success_url = reverse_lazy('administration:perfiles')
+   success_message = "Perfil creado exitosamente"
+   template_name = 'administration/perfiles/create_perfil.html'
+
+
+class EditPerfilView(LoginRequiredMixin, SuccessMessageMixin, UpdateView):
+   model = Perfiles
+   form_class = CreatePerfilForm
+   success_url = reverse_lazy('administration:perfiles')
+   success_message = "Perfil editado exitosamente"
+   template_name = 'administration/perfiles/edit_perfil.html'
