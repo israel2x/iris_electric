@@ -1,0 +1,23 @@
+{% extends 'administration/transformador/transformador.html' %}
+{% load static %}
+
+
+{% block columns %}
+    <tr>
+        <th scope="col" style="width: 10%;">Regional</th>
+        <th scope="col" style="width: 10%;">SubEstacion</th>
+        <th scope="col" style="width: 10%;">Alimentadora</th>
+        <th scope="col" style="width: 10%;">Marca</th>
+        <th scope="col" style="width: 10%;">Codigo</th>
+        <th scope="col" style="width: 10%;">KVA</th>
+        <th scope="col" style="width: 10%;">Medidor</th>
+        <th scope="col" style="width: 10%;">Editar</th>
+    </tr>
+{% endblock columns %}
+
+{% block rows %}
+{% endblock rows %}
+
+{% block extra_javascript %}
+   <script src="{% static 'js/administration/transformador/list.js' %}"></script>
+{% endblock extra_javascript %}

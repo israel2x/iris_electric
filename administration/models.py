@@ -28,8 +28,8 @@ class Regional(models.Model):
    """
    empresa = models.ForeignKey(Empresa, on_delete=models.CASCADE)
    nombre = models.CharField(max_length=100)
-   dia_lectura = models.CharField(max_length=50)
-   horario_lectura = models.CharField(max_length=50)
+   dia_lectura = models.DateField()
+   horario_lectura = models.TimeField()
 
    def __str__(self):
       return self.nombre

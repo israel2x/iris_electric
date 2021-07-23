@@ -1,0 +1,20 @@
+{% extends 'administration/regionales/regionales.html' %}
+{% load static %}
+
+
+{% block columns %}
+    <tr>
+        <th scope="col" style="width: 10%;">Empresa</th>
+        <th scope="col" style="width: 10%;">Nombre</th>
+        <th scope="col" style="width: 10%;">Dia de lectura</th>
+        <th scope="col" style="width: 10%;">Horario de lectura</th>
+        <th scope="col" style="width: 10%;">Editar</th>
+    </tr>
+{% endblock columns %}
+
+{% block rows %}
+{% endblock rows %}
+
+{% block extra_javascript %}
+   <script src="{% static 'js/administration/regionales/list.js' %}"></script>
+{% endblock extra_javascript %}

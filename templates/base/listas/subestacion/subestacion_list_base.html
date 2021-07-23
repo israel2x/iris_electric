@@ -1,0 +1,19 @@
+{% extends 'administration/subestacion/subestacion.html' %}
+{% load static %}
+
+
+{% block columns %}
+    <tr>
+        <th scope="col" style="width: 10%;">Regional</th>
+        <th scope="col" style="width: 10%;">Nombre</th>
+        <th scope="col" style="width: 10%;">Capacidad</th>
+        <th scope="col" style="width: 10%;">Editar</th>
+    </tr>
+{% endblock columns %}
+
+{% block rows %}
+{% endblock rows %}
+
+{% block extra_javascript %}
+   <script src="{% static 'js/administration/subestacion/list.js' %}"></script>
+{% endblock extra_javascript %}

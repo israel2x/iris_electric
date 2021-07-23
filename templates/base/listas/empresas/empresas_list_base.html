@@ -1,0 +1,18 @@
+{% extends 'administration/empresas/empresas.html' %}
+{% load static %}
+
+
+{% block columns %}
+    <tr>
+        <th scope="col" style="width: 10%;">Nombre</th>
+        <th scope="col" style="width: 10%;">Dirección</th>
+        <th scope="col" style="width: 10%;">Editar</th>
+    </tr>
+{% endblock columns %}
+
+{% block rows %}
+{% endblock rows %}
+
+{% block extra_javascript %}
+   <script src="{% static 'js/administration/empresas/empresas.js' %}"></script>
+{% endblock extra_javascript %}

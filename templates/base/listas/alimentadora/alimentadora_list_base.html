@@ -1,0 +1,20 @@
+{% extends 'administration/alimentadora/alimentadoras.html' %}
+{% load static %}
+
+
+{% block columns %}
+    <tr>
+        <th scope="col" style="width: 10%;">Regional</th>
+        <th scope="col" style="width: 10%;">SubEstacion</th>
+        <th scope="col" style="width: 10%;">Nombre</th>
+        <th scope="col" style="width: 10%;">Descripcion</th>
+        <th scope="col" style="width: 10%;">Editar</th>
+    </tr>
+{% endblock columns %}
+
+{% block rows %}
+{% endblock rows %}
+
+{% block extra_javascript %}
+   <script src="{% static 'js/administration/alimentadora/list.js' %}"></script>
+{% endblock extra_javascript %}

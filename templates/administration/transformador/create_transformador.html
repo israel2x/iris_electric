@@ -1,0 +1,66 @@
+{% extends 'base/base.html' %}
+
+
+{% block content %}
+<section id="CreateUsuario">
+   <div class="fluid-container">
+      <div class="row">
+         <div class="col-12">
+            <div class="card-header">
+               <div class="col-12">
+                 <h3 class="index-title">Creación de Transformador</h3>
+               </div>
+             </div>
+            <div class="card card-form">
+                  <form action="." method="POST">
+                     {% csrf_token %}
+                     <div class="row">
+                        <div class="col-12 mb-3">
+                           <label for="id_regional" class="labels-account">Regional</label>
+                           {{ form.regional }}
+                        </div>
+                     </div>
+                     <div class="row">
+                        <div class="col-12 mb-3">
+                           <label for="id_sub_estaciones" class="labels-account">SubEstacion</label>
+                           {{ form.sub_estaciones }}
+                        </div>
+                     </div>
+                     <div class="row">
+                        <div class="col-12 mb-3">
+                           <label for="id_alimentadora" class="labels-account">Alimentadora</label>
+                           {{ form.alimentadora }}
+                        </div>
+                     </div>
+                     <div class="row mb-5">
+                        <div class="col-md-3">
+                           <label for="id_marca" class="labels-account">Marca</label>
+                           {{ form.marca }}
+                        </div>
+                        <div class="col-md-3">
+                           <label for="id_codigo" class="labels-account">Codigo</label>
+                           {{ form.codigo }}
+                           
+                        </div>
+                        <div class="col-md-3">
+                           <label for="id_kva" class="labels-account">Kva</label>
+                           {{ form.kva }}
+                           
+                        </div>
+                        <div class="col-md-3">
+                           <label for="id_medidor" class="labels-account">Medidor</label>
+                           {{ form.medidor }}
+                        </div>
+                     </div>
+
+                     <div class="row" style="justify-content: center;">
+                        <button class="btn btn-warning create-user-button" type="submit" style="color: #686868; font-weight: bold;">Guardar</button>
+                     </div>
+                  </form>
+            </div>
+         </div>
+      </div>
+
+   </div>
+</section>
+{% endblock content %}
