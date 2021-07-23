@@ -1,7 +1,7 @@
 from django.db import models
 from django.forms import model_to_dict
 from django.contrib.auth.models import AbstractUser
-
+from django.contrib.auth.models import Group
 
 
 class CustomUser(AbstractUser):
@@ -26,3 +26,19 @@ class CustomUser(AbstractUser):
          perfil_name = perfil_name.name
          item['perfil'] = perfil_name
       return item
+
+
+class Perfiles(Group):
+   description = models.CharField(max_length=100)
+
+   def __str__(self):
+      return self.name
+
+   def toJSON(self):
+      item = {}
+      item['id'] = self.id
+      item['name'] = self.name
+      item['description'] = self.description
+      
+      return item
+

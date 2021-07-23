@@ -9,9 +9,10 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 
 
 from .models import Suministro
-
+from usuarios.models import Perfiles
 
 User = get_user_model()
+
 
 
 class IndexView(LoginRequiredMixin, TemplateView):
@@ -20,7 +21,7 @@ class IndexView(LoginRequiredMixin, TemplateView):
 
 
 class UsuariosView(LoginRequiredMixin, TemplateView):
-   template_name = 'base/usuarios_list_base.html'
+   template_name = 'base/listas/usuarios/usuarios_list_base.html'
    login_url = 'accounts/login/'
 
 
@@ -46,7 +47,7 @@ class UsuariosView(LoginRequiredMixin, TemplateView):
 
 
 class SuministroView(LoginRequiredMixin, TemplateView):
-   template_name = 'base/suministro_list_base.html'
+   template_name = 'base/listas/suministros/suministro_list_base.html'
    login_url = 'accounts/login/'
 
 
@@ -71,7 +72,26 @@ class SuministroView(LoginRequiredMixin, TemplateView):
 
 
 class PerfilesView(TemplateView):
-   template_name = 'administration/perfiles.html'
+   template_name = 'base/listas/perfiles/perfiles_list_base.html'
+
+   @method_decorator(csrf_exempt)
+   def dispatch(self, request, *args, **kwargs):
+      return super().dispatch(request, *args, **kwargs)
+   
+   def post(self, request, *args, **kwargs):
+      data = {}
+      
+      try:
+         action = request.POST['action']
+         if action == 'search_perfiles':
+            data = []
+            for i in Perfiles.objects.all():
+               data.append(i.toJSON())
+         else:
+            data['error'] = 'Ha ocurrido un error'
+      except Exception as e:
+         data['error'] = str(e)
+      return JsonResponse(data, safe=False)
 
 
 class AlimentadorasView(TemplateView):

@@ -1,8 +1,10 @@
 from django import forms
 from django.contrib.auth.forms import UserCreationForm, UserChangeForm
 from django.contrib.auth.models import Group
+from django.contrib.auth import get_user_model
 
-from .models import CustomUser
+
+User = get_user_model()
 
 
 class CustomUserCreationForm(UserCreationForm):
@@ -13,17 +15,26 @@ class CustomUserCreationForm(UserCreationForm):
    )
 
    class Meta(UserCreationForm):
-      model = CustomUser
+      model = User
       fields = ('username', 'email', 'first_name', 'last_name', 'groups')
 
 
-class CustomUserChangeForm(UserChangeForm):
+class CustomUserChangeForm(forms.ModelForm):
+
+   def __init__(self, *args, **kwargs):
+      super().__init__(*args, **kwargs)
+      for form in self.visible_fields():
+         form.field.widget.attrs['class'] = 'form-control'
 
    groups = forms.ModelChoiceField(
       queryset=Group.objects.all(),
-      widget=forms.Select(attrs={'class': 'form-control'})
    )
 
+   username = forms.CharField(widget=forms.TextInput())
+   email = forms.EmailField(widget=forms.EmailInput())
+   first_name = forms.CharField(widget=forms.TextInput())
+   last_name = forms.CharField(widget=forms.TextInput())
+
    class Meta:
-      model = CustomUser
-      fields = ('username', 'email', 'first_name', 'last_name', 'groups')
+      model = User
+      fields = ['username', 'email', 'first_name', 'last_name', 'groups']
