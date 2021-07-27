@@ -1,0 +1,35 @@
+<!-- Tabla de Suministro -->
+{% extends 'base/base.html' %}
+{% load static %}
+
+{% block content %}
+   <!-- Start Table Suministro Card -->
+   <div class="card card-create-auction">
+      <div class="card-body usuarios">
+         <div class="row">
+            <div class="col-7" style="text-align: right;">
+               <p>Administrar Medidores</p>
+            </div>
+            <div class="col-5" style="text-align: right;">
+               <a type="button" class="btn btn-secondary button-create-auction" href="{% url 'administration:create_suministro' %}"><i class="fas fa-plus"></i></a>
+            </div>
+         </div>
+      </div>
+   </div>
+   <div class="card card-list-auction">
+      <div class="card-body">
+         <table class="table table-bordered" id="dataMedidor">
+            <thead>
+               {% block columns %}
+               {% endblock columns %}
+            </thead>
+            <tbody>
+               {% block rows %}
+               {% endblock rows %}
+            </tbody>
+        </table>
+      </div>
+   </div>
+<!-- End Table Suministro Card -->
+
+{% endblock content %}

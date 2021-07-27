@@ -1,0 +1,16 @@
+{% for evento in eventos %}
+  <tr>
+    <td>{{ evento.fecha_registro }}</td>
+    <td>{{ evento.hora_registro }}</td>
+    <td>{{ evento.origen }}</td>
+    <td>{{ evento.operacion }}</td>
+    <td>{{ evento.kwh }}</td>
+    <td>{{ evento.operador }}</td>
+    <td>{{ evento.error }}</td>
+    <td>{{ evento.observacion }}</td>
+  </tr>
+{% empty %}
+  <tr>
+    <td colspan="8" class="text-center bg-warning">No se han registrado Eventos</td>
+  </tr>
+{% endfor %}

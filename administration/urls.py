@@ -1,13 +1,14 @@
 from django.urls import path
 
 from .views import (
-   IndexView, UsuariosView,
-   SuministroView, PerfilesView,
+   IndexView, UsuariosView, PerfilesView,
+   SuministroView, SuministroCreateView, SuministroUpdateView,
    EmpresasView, EmpresaCreateView, EmpresaUpdateView,
    RegionalesView, RegionalCreateView, RegionalUpdateView,
    SubEstacionesView, SubEstacionCreateView, SubEstacionUpdateView,
    AlimentadorasView, AlimentadoraCreateView, AlimentadoraUpdateView,
    TransformadoresView, TransformadorCreateView, TransformadorUpdateView,
+   MedidorListView, MedidorDetailView, MedidorCreateView, MedidorUpdateView,
 )
 
 
@@ -37,9 +38,14 @@ urlpatterns = [
    path('administration/transformador/', TransformadoresView.as_view(), name='transformador'),
    path('transformador/create-transformador/', TransformadorCreateView.as_view(), name='create_transformador'),
    path('transformador/edit-transformador/<int:pk>/', TransformadorUpdateView.as_view(), name='edit_transformador'),
-
-
+   # Suministro URL's
    path('administration/suministro/', SuministroView.as_view(), name='suministro'),
-
+   path('create-suministro/', SuministroCreateView.as_view(), name='create_suministro'),
+   path('edit-suministro/<int:pk>/', SuministroUpdateView.as_view(), name='edit_suministro'),
+   # Medidor URL's
+   path('administration/suministro/medidor/<int:pk>/', MedidorListView.as_view(), name='list_medidor'),
+   path('administration/suministro/medidor/<int:pk>/detail/', MedidorDetailView.as_view(), name='detail_medidor'),
+   path('<int:pk>/create/', MedidorCreateView.as_view(), name='create_medidor'),
+   path('administration/suministro/medidor/<int:pk>/edit/', MedidorUpdateView.as_view(), name='edit_medidor'),
    
 ]

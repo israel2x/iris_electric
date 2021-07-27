@@ -23,18 +23,32 @@ $(function () {
            {"data": "direccion"},
            {"data": "latitud"},
            {"data": "longitud"},
+           {"data": "longitud"},
+           {"data": "longitud"},
+        //    {"data": "suministro_empresa.nombre"},
        ],
        columnDefs: [
-        { "width": "10%", "targets": 0 }
-        //    {
-        //        targets: [0],
-        //        class: 'text-center',
-        //        orderable: false,
-        //        render: function (data, type, row) {
-        //            var ref_code = '<td><a href="/subasta/' + data + '/" class="btn btn-warning btn-xs btn-flat">'+ data + '</a></td> ';
-        //            return ref_code;
-        //        }
-        //    },
+        { "width": "10%", "targets": 0 },
+        {
+            targets: [10],
+            class: 'text-center',
+            orderable: false,
+            render: function (data, type, row) {
+             var buttons = '<a href="edit-suministro/' + row.id + '/" class="btn btn-success btn-xs btn-flat"><i class="fas fa-edit"></i></a>';
+            //  buttons += '<a href="/suministro/edit-suministro/' + row.id + '/" class="btn btn-success btn-xs btn-flat"><i class="nav-icon fas fa-tachometer-alt"></i></a>';
+             return buttons;
+            }
+        },
+        {
+            targets: [-1],
+            class: 'text-center',
+            orderable: false,
+            render: function (data, type, row) {
+            //  var buttons = '<a href="/suministro/edit-suministro/' + row.id + '/" class="btn btn-success btn-xs btn-flat"><i class="fas fa-edit"></i></a>';
+             buttons = '<a href="medidor/' + row.id + '" class="btn btn-primary btn-xs btn-flat"><i class="nav-icon fas fa-tachometer-alt"></i></a>';
+             return buttons;
+            }
+        },
        ],
        initComplete: function (settings, json) {
 

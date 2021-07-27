@@ -67,3 +67,35 @@
 .card-form {
    padding: 3.4rem;
 }
+
+
+
+/*--------- Medidor Detail Section -------*/
+#medidorDatos .card-body img {
+   width: 60%;
+   height: 200px;
+}
+
+#medidorDatos .card-title {
+   color: #686868;
+   font-weight: bold;
+}
+
+#medidorDatos .medidor-img {
+   text-align: center;
+}
+
+#medidorDatos .medidor-data {
+   padding-left: 4.2rem;
+}
+
+#TablaMedidorGenerales td {
+   font-size: 13px;
+}
+#TablaMedidorEspecificas td {
+   font-size: 13px;
+}
+
+#TablaMedidorEspecificas .ultima-fecha-lectura {
+   padding-top: 4rem;
+}

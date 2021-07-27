@@ -6,6 +6,8 @@ from .models import (
    SubEstacion,
    Alimentadora,
    Transformador,
+   Suministro,
+   Medidor,
 )
 
 
@@ -77,3 +79,48 @@ class TransformadorForm(forms.ModelForm):
       'alimentadora', 'marca', 'codigo', 
       'kva', 'medidor',
    )
+
+
+class SuministroForm(forms.ModelForm):
+
+   direccion = forms.CharField(widget=forms.Textarea(attrs={'class': 'form-control', 'rows': "3"}))
+
+   def __init__(self, *args, **kwargs):
+      super().__init__(*args, **kwargs)
+      for form in self.visible_fields():
+         form.field.widget.attrs['class'] = 'form-control'
+
+   class Meta:
+      model = Suministro
+      fields = (
+         'empresa',
+         'regional',
+         'sub_estacion',
+         'alimentadora',
+         'cod_sumistro',
+         'transformador',
+         'cliente',
+         'direccion',
+         'latitud',
+         'longitud',
+         # 'location',
+      )
+
+
+class MedidorForm(forms.ModelForm):
+
+   def __init__(self, *args, **kwargs):
+      super().__init__(*args, **kwargs)
+      for form in self.visible_fields():
+         form.field.widget.attrs['class'] = 'form-control'
+   
+   class Meta:
+      model = Medidor
+      fields = (
+         'suministro',
+         'clase_medidor',
+         'marca_medidor',
+         'modelo_medidor',
+         'serie',
+         'estado',
+      )

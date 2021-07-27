@@ -1,7 +1,8 @@
+import json
 import pprint
 from django.shortcuts import render
 from django.urls import reverse_lazy
-from django.views.generic import TemplateView, CreateView
+from django.views.generic import TemplateView, CreateView, View
 from django.views.generic.edit import UpdateView
 from django.utils.decorators import method_decorator
 from django.views.decorators.csrf import csrf_exempt
@@ -74,6 +75,21 @@ class SuministroView(LoginRequiredMixin, TemplateView):
       except Exception as e:
          data['error'] = str(e)
       return JsonResponse(data, safe=False)
+
+
+class SuministroCreateView(LoginRequiredMixin, SuccessMessageMixin, CreateView):
+   form_class = SuministroForm
+   success_url = reverse_lazy('administration:suministro')
+   success_message = "Suministro creado exitosamente"
+   template_name = 'administration/suministro/create_suministro.html'
+
+
+class SuministroUpdateView(LoginRequiredMixin, SuccessMessageMixin, UpdateView):
+   model = Suministro
+   form_class = SuministroForm
+   success_url = reverse_lazy('administration:suministro')
+   success_message = "Suministro editado exitosamente"
+   template_name = 'administration/suministro/edit_suministro.html'
 
 
 class PerfilesView(TemplateView):
@@ -287,3 +303,77 @@ class TransformadorUpdateView(LoginRequiredMixin, SuccessMessageMixin, UpdateVie
    success_url = reverse_lazy('administration:transformador')
    success_message = "Alimentadora editada exitosamente"
    template_name = 'administration/transformador/edit_transformador.html'
+
+
+class MedidorListView(TemplateView):
+   template_name = 'base/listas/medidor/medidor_list_base.html'
+   pk = None
+
+   @method_decorator(csrf_exempt)
+   def dispatch(self, request, pk, *args, **kwargs):
+      self.pk = pk
+      return super().dispatch(request, *args, **kwargs)
+   
+   def post(self, request, *args, **kwargs):
+      data = {}
+      
+      try:
+         action = request.POST['action']
+         if action == 'search_medidor':
+            data = []
+            for i in Medidor.objects.filter(suministro_id=self.pk):
+               data.append(i.toJSON())
+         else:
+            data['error'] = 'Ha ocurrido un error'
+      except Exception as e:
+         data['error'] = str(e)
+      return JsonResponse(data, safe=False)
+
+
+class MedidorDetailView(LoginRequiredMixin, SuccessMessageMixin, View):
+   template_name = 'administration/medidor/detail.html'
+   pk = None
+
+   @method_decorator(csrf_exempt)
+   def dispatch(self, request, pk, *args, **kwargs):
+      self.pk = pk
+      return super().dispatch(request, *args, **kwargs)
+
+   def get(self, *args, **kwargs):
+      medidor = Medidor.objects.filter(suministro_id=self.pk)[0]
+
+      eventos = RegistroMedidor.objects.filter(medidor_id=medidor.id)
+
+      context = {
+         'medidor': medidor,
+         'eventos': eventos,
+      }
+      return render(self.request, self.template_name, context)
+   
+   def post(self, *args, **kwargs):
+      data = json.loads(self.request.body)
+
+      if data['event'] == 'solicitud_lectura':
+         pass
+      elif data['event'] == 'solicitar_corte':
+         pass
+      else:
+         pass
+      
+
+
+
+
+class MedidorCreateView(LoginRequiredMixin, SuccessMessageMixin, CreateView):
+   form_class = MedidorForm
+   success_url = reverse_lazy('administration:medidor')
+   success_message = "Medidor creado exitosamente"
+   template_name = 'administration/medidor/create_medidor.html'
+
+
+class MedidorUpdateView(LoginRequiredMixin, SuccessMessageMixin, UpdateView):
+   model = Medidor
+   form_class = MedidorForm
+   success_url = reverse_lazy('administration:medidor')
+   success_message = "Medidor editado exitosamente"
+   template_name = 'administration/medidor/edit_medidor.html'

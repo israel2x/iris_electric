@@ -1,0 +1,191 @@
+<!-- Tabla de Suministro -->
+{% extends 'base/base.html' %}
+{% load static %}
+
+{% block content %}
+   <!-- Start Table Suministro Card -->
+   <div class="card card-create-auction">
+      <div class="card-body usuarios">
+         <div class="row">
+            <div class="col-7" style="text-align: right;">
+               <p>Administrar Medidores</p>
+            </div>
+         </div>
+      </div>
+   </div>
+
+   <section id="medidorDatos">
+      <div class="container-fluid">
+         <div class="row">
+            <div class="col-4 medidor-img">
+               <div class="card-body mb-4">
+                  <img class="img-fluid" src="{% static 'img/cnel/medidor.png' %}" alt="Photo">
+                </div>
+                  <div class="row mt-4" style="justify-content: center;">
+                     <div class="col-xs-4">
+                        <form action="." method="POST">
+                           {% csrf_token %}
+                           <button type="button" value="solicitud_lectura" class="btn btn-block btn-default btn-xs event-button">Solicitar Lectura</button>
+                     </div>
+                     <div class="col-xs-4 ml-3">
+                           <button type="button" value="solicitar_corte" class="btn btn-block btn-default btn-xs event-button">Solicitar Corte</button>
+                     </div>
+                     <div class="col-xs-4 ml-3">
+                           <button type="button" value="solicitar_reconexion" class="btn btn-block btn-default btn-xs event-button">Solicitar Reconexion</button>
+                        </form>
+                     </div>
+                  </div>
+               
+                
+            </div>
+            <div class="col-8">
+               <div class="row">
+                  <!-- Datos Generales -->
+                  <div class="col-12">
+                     <div class="card">
+                        <div class="card-header">
+                           <div class="row" style="justify-content: center;">
+                              <h5 class="card-title m-0" >Datos Generales</h5>
+                           </div>
+                        </div>
+                        <div class="card-body">                           
+                           <table id="TablaMedidorGenerales">
+                              <tr>
+                                 <td>Suministro:</td>
+                                 <td class="medidor-data">{{ medidor.suministro }}</td>
+                              </tr>
+                              <tr>
+                                 <td>Usuario:</td>
+                                 <td class="medidor-data">{{ medidor.suministro.cliente }}</td>
+                              </tr>
+                              <tr>
+                                 <td>Direccion:</td>
+                                 <td class="medidor-data">{{ medidor.suministro.direccion }}</td> 
+                              </tr>
+                           </table>
+
+                        </div>
+                      </div>
+                  </div>
+               </div>
+               <div class="row">
+                  <!-- Datos Medidor -->
+                  <div class="col-12">
+                  <div class="card">
+                     <div class="card-header">
+                        <div class="row" style="justify-content: center;">
+                           <h5 class="card-title m-0" >Datos de Medidor</h5>
+                        </div>
+                     </div>
+                        <div class="card-body">
+                           <div class="row">
+                              <div class="col-md-6">
+                                 <table id="TablaMedidorGenerales">
+                                    <tr>
+                                       <td>Codigo:</td>
+                                       <td class="medidor-data">{{ medidor.serie }}</td>
+                                    </tr>
+                                    <tr>
+                                       <td>Tipo Medidor:</td>
+                                       <td class="medidor-data">{{ medidor.marca_medidor }}</td>
+                                    </tr>
+                                    <tr>
+                                       <td>SubEstacion:</td>
+                                       <td class="medidor-data">{{ medidor.suministro.sub_estacion }}</td> 
+                                    </tr>
+                                    <tr>
+                                       <td>Alimentadora:</td>
+                                       <td class="medidor-data">{{ medidor.suministro.alimentadora }}</td> 
+                                    </tr>
+                                    <tr>
+                                       <td>Transf. Asociado:</td>
+                                    </tr>
+                                    <tr>
+                                       <td>Ultima Lectura:</td>
+                                    </tr>
+                                    <tr>
+                                       <td>Status:</td>
+                                       <td class="medidor-data">{{ medidor.get_estado_display }}</td> 
+                                    </tr>
+                                 </table>
+                              </div>
+                              <div class="col-md-6">
+                                 <table id="TablaMedidorEspecificas">
+                                    <tr>
+                                       <td>Marca:</td>
+                                       <td class="medidor-data">{{ medidor.marca_medidor  }}</td>
+                                    </tr>
+                                    <tr>
+                                       <td>Modelo:</td>
+                                       <td class="medidor-data">{{ medidor.modelo_medidor }}</td>
+                                    </tr>
+                                    <tr>
+                                       <td class="ultima-fecha-lectura">Ultima Fecha:</td> 
+                                    </tr>
+                                    </tr>
+                                 </table>
+                              </div>
+                           </div>
+                        </div>
+                   </div>
+                  </div>
+               </div>
+            </div>
+         </div>
+         <div class="row mt-5">
+            <!-- Datos Medidor -->
+            <div class="col-12">
+            <div class="card">
+               <div class="card-header">
+                  <div class="row" style="justify-content: center;">
+                     <h5 class="card-title m-0" >Perfil de Carga</h5>
+                  </div>
+               </div>
+                  <div class="card-body">
+                     <div class="row mb-3">
+                        <!-- <form action="" class="medidorFilter"> -->
+                           <div class="col-md-6">
+                              <label for="" class="labels-suministro">Año</label>
+                              <input class="form-control" type="text" placeholder="Default input">
+                           </div>
+                           <div class="col-md-6">
+                              <label for="" class="labels-suministro">Mes</label>
+                              <input class="form-control" type="text" placeholder="Default input">
+                           </div>
+                        <!-- </form> -->
+                     </div>
+                     <div class="row" style="justify-content: center;">
+                        <button type="submit" class="btn btn-primary">Consultar</button>
+                     </div>
+                  </div>
+             </div>
+            </div>
+         </div>
+
+         <!-- tabla Registro de Eventos -->
+         <table id="EventsTable" class="table">
+            <thead>
+              <tr>
+                <th scope="col">Fecha</th>
+                <th scope="col">Hora</th>
+                <th scope="col">Origen</th>
+                <th scope="col">Operacion</th>
+                <th scope="col">Kwh</th>
+                <th scope="col">Operador</th>
+                <th scope="col">Error</th>
+                <th scope="col">Observacion</th>
+              </tr>
+            </thead>
+            <tbody>
+              {% include 'administration/medidor/tabla_eventos.html' %}
+            </tbody>
+        </table>
+      </div>
+   </section>
+
+<!-- End Table Suministro Card -->
+{% endblock content %}
+
+{% block extra_javascript %}
+   <script src="{% static 'js/administration/medidor/eventos.js' %}"></script>
+{% endblock extra_javascript %}

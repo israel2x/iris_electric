@@ -1,8 +1,31 @@
 import pprint
 from django.db import models
 from django.forms import model_to_dict
+# from location_field.models.plain import PlainLocationField
 
 # from usuarios import Cliente
+
+ESTADO_MEDIDOR = (
+   (1, 'Activo'),
+   (2, 'Desactivado'),
+)
+
+ORIGEN_SEÑAL = (
+   (1, 'SWITCH-SOLICITA'),
+   (2, 'MEDIDOR-RESPUESTA'),
+)
+
+OPERACION = (
+   (1, 'LECTURA'),
+)
+
+STATUS = (
+   ('OK', 'Sin errores'),
+   ('ERROR', 'Ha ocurrido un error'),
+)
+
+
+
 
 class Empresa(models.Model):
    """
@@ -130,6 +153,7 @@ class Suministro(models.Model):
    direccion = models.CharField(max_length=100)
    latitud = models.CharField(max_length=100)
    longitud = models.CharField(max_length=100)
+   # location = PlainLocationField(based_fields=['city'], zoom=7)
 
    def __str__(self):
       return self.cod_sumistro
@@ -151,3 +175,55 @@ class Suministro(models.Model):
       return item
 
 
+class Medidor(models.Model):
+   """
+   Un medidor de un suministro
+   """
+   suministro = models.ForeignKey(Suministro, on_delete=models.CASCADE)
+   clase_medidor = models.CharField(max_length=100)
+   marca_medidor = models.CharField(max_length=100)
+   modelo_medidor = models.CharField(max_length=100)
+   serie = models.CharField(max_length=100)
+   estado = models.IntegerField(default='Desactivado', choices=ESTADO_MEDIDOR)
+
+   def __str__(self):
+      return self.serie
+
+   def toJSON(self):
+      item = model_to_dict(self)
+      item['suministro'] = self.suministro.toJSON()
+      item['clase'] = self.clase_medidor
+      item['marca'] = self.marca_medidor
+      item['modelo'] = self.modelo_medidor
+      item['serie'] = self.serie
+      item['estado'] = self.estado
+
+      return item
+
+
+
+class RegistroMedidor(models.Model):
+   """
+   Cada medidor tiene un evento, el cual
+   es registrado.
+   Estos eventos estan relacionados a:
+   - Solicitud de Lectura.
+   - Solicitud de Corte.
+   - Solicitud de Reconexion.
+
+   Por cada accion realizada, 
+   se almacena una transaccion,
+   es decir un registro.
+   """
+   medidor = models.ForeignKey(Medidor, on_delete=models.CASCADE)
+   origen = models.IntegerField(null=True, blank=True, choices=ORIGEN_SEÑAL)
+   kwh = models.DecimalField(max_digits=6, decimal_places=2)
+   operador = models.CharField(max_length=100)
+   error = models.IntegerField(null=True, blank=True, choices=STATUS)
+   observacion = models.CharField(max_length=250)
+   fecha_registro = models.DateField(auto_now_add=True)
+   hora_registro = models.TimeField(auto_now_add=True)
+
+
+   def __str__(self):
+      return 'Registro:{} - medidor:{} | {}'.format(self.id, self.medidor.serie, self.fecha_registro)

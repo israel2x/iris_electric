@@ -1,0 +1,24 @@
+{% extends 'administration/medidor/medidor.html' %}
+{% load static %}
+
+
+{% block columns %}
+    <tr>
+        <th scope="col" style="width: 10%;">Clase Medidor</th>
+        <th scope="col" style="width: 10%;">Marca Medidor</th>
+        <th scope="col" style="width: 10%;">Modelo</th>
+        <th scope="col" style="width: 10%;">Serie</th>
+        <th scope="col" style="width: 10%;">Estado Medidor</th>
+        <th scope="col" style="width: 10%;">Editar</th>
+        <th scope="col" style="width: 10%;">Detalle</th>
+        <th scope="col" style="width: 10%;">Sellos</th>
+        <th scope="col" style="width: 10%;">Cambiar Estado del Medidor</th>
+    </tr>
+{% endblock columns %}
+
+{% block rows %}
+{% endblock rows %}
+
+{% block extra_javascript %}
+   <script src="{% static 'js/administration/medidor/list.js' %}"></script>
+{% endblock extra_javascript %}
