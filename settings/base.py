@@ -30,7 +30,7 @@ LOCAL_APPS = [
 ]
 
 THIRD_PARTY = [
-    'location_field.apps.DefaultConfig',
+    # 'location_field.apps.DefaultConfig',
 ]
 
 
