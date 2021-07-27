@@ -1,7 +1,9 @@
 import json
 import pprint
+import random
 from django.shortcuts import render
 from django.urls import reverse_lazy
+from django.template.loader import render_to_string
 from django.views.generic import TemplateView, CreateView, View
 from django.views.generic.edit import UpdateView
 from django.utils.decorators import method_decorator
@@ -333,15 +335,16 @@ class MedidorListView(TemplateView):
 class MedidorDetailView(LoginRequiredMixin, SuccessMessageMixin, View):
    template_name = 'administration/medidor/detail.html'
    pk = None
+   obj = None
 
    @method_decorator(csrf_exempt)
    def dispatch(self, request, pk, *args, **kwargs):
       self.pk = pk
+      self.obj = Medidor.objects.filter(suministro_id=self.pk)[0]
       return super().dispatch(request, *args, **kwargs)
 
    def get(self, *args, **kwargs):
-      medidor = Medidor.objects.filter(suministro_id=self.pk)[0]
-
+      medidor = self.obj
       eventos = RegistroMedidor.objects.filter(medidor_id=medidor.id)
 
       context = {
@@ -351,22 +354,57 @@ class MedidorDetailView(LoginRequiredMixin, SuccessMessageMixin, View):
       return render(self.request, self.template_name, context)
    
    def post(self, *args, **kwargs):
-      data = json.loads(self.request.body)
+      data = {}
+      medidor = self.obj
+      res = json.loads(self.request.body)
 
-      if data['event'] == 'solicitud_lectura':
-         pass
-      elif data['event'] == 'solicitar_corte':
-         pass
-      else:
-         pass
-      
 
+      try:
+         eventos = RegistroMedidor.objects.filter(medidor_id=medidor.id)
+
+         ctx = {
+            'eventos': eventos,
+         }
+         data['html_lista_eventos'] = render_to_string('administration/medidor/tabla_eventos.html', ctx)
+
+         if res['event'] == 'solicitud_lectura':
+            new_event = RegistroMedidor()
+            new_event.medidor = self.obj
+            new_event.origen = 1
+            new_event.kwh = round(random.uniform(1000.00, 9999.00), 2)
+            new_event.operador = 'TEST'
+            new_event.error = 1
+            new_event.observacion = 'Solicitud de lectura por parte del sistema.'
+         elif res['event'] == 'solicitar_corte':
+            new_event = RegistroMedidor()
+            new_event.medidor = self.obj
+            new_event.origen = 1
+            new_event.kwh = round(random.uniform(1000.00, 9999.00), 2)
+            new_event.operador = 'TEST'
+            new_event.error = 1
+            new_event.observacion = 'Solicitud de corte por parte del sistema.'
+         else:
+            new_event = RegistroMedidor()
+            new_event.medidor = self.obj
+            new_event.origen = 1
+            new_event.kwh = round(random.uniform(1000.00, 9999.00), 2)
+            new_event.operador = 'TEST'
+            new_event.error = 1
+            new_event.observacion = 'Solicitud de reconexion por parte del sistema.'
+
+         new_event.save()
+         data['status'] = '200'
+         data['message'] = 'Solicitud generada exitosamente'
+      except Exception as e:
+         data['status'] = '500'
+         data['error'] = str(e)
+      return JsonResponse(data, safe=False)
 
 
 
 class MedidorCreateView(LoginRequiredMixin, SuccessMessageMixin, CreateView):
    form_class = MedidorForm
-   success_url = reverse_lazy('administration:medidor')
+   success_url = reverse_lazy('administration:list_medidor')
    success_message = "Medidor creado exitosamente"
    template_name = 'administration/medidor/create_medidor.html'
 
@@ -374,6 +412,6 @@ class MedidorCreateView(LoginRequiredMixin, SuccessMessageMixin, CreateView):
 class MedidorUpdateView(LoginRequiredMixin, SuccessMessageMixin, UpdateView):
    model = Medidor
    form_class = MedidorForm
-   success_url = reverse_lazy('administration:medidor')
+   success_url = reverse_lazy('administration:list_medidor')
    success_message = "Medidor editado exitosamente"
    template_name = 'administration/medidor/edit_medidor.html'

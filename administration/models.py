@@ -20,8 +20,8 @@ OPERACION = (
 )
 
 STATUS = (
-   ('OK', 'Sin errores'),
-   ('ERROR', 'Ha ocurrido un error'),
+   (1, 'OK',),
+   (2, 'ERROR',),
 )
 
 

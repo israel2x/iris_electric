@@ -45,7 +45,7 @@ urlpatterns = [
    # Medidor URL's
    path('administration/suministro/medidor/<int:pk>/', MedidorListView.as_view(), name='list_medidor'),
    path('administration/suministro/medidor/<int:pk>/detail/', MedidorDetailView.as_view(), name='detail_medidor'),
-   path('<int:pk>/create/', MedidorCreateView.as_view(), name='create_medidor'),
+   path('administration/suministro/medidor/create/', MedidorCreateView.as_view(), name='create_medidor'),
    path('administration/suministro/medidor/<int:pk>/edit/', MedidorUpdateView.as_view(), name='edit_medidor'),
    
 ]
