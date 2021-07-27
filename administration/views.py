@@ -404,7 +404,7 @@ class MedidorDetailView(LoginRequiredMixin, SuccessMessageMixin, View):
 
 class MedidorCreateView(LoginRequiredMixin, SuccessMessageMixin, CreateView):
    form_class = MedidorForm
-   success_url = reverse_lazy('administration:list_medidor')
+   success_url = reverse_lazy('administration:suministro')
    success_message = "Medidor creado exitosamente"
    template_name = 'administration/medidor/create_medidor.html'
 
@@ -412,6 +412,6 @@ class MedidorCreateView(LoginRequiredMixin, SuccessMessageMixin, CreateView):
 class MedidorUpdateView(LoginRequiredMixin, SuccessMessageMixin, UpdateView):
    model = Medidor
    form_class = MedidorForm
-   success_url = reverse_lazy('administration:list_medidor')
+   success_url = reverse_lazy('administration:suministro')
    success_message = "Medidor editado exitosamente"
    template_name = 'administration/medidor/edit_medidor.html'

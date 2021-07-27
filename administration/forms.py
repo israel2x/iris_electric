@@ -29,7 +29,7 @@ class EmpresaCreationForm(forms.ModelForm):
 class RegionalForm(forms.ModelForm):
 
    dia_lectura = forms.DateField(widget=forms.DateInput(attrs={'class': 'form-control', 'type': 'date'}))
-   horario_lectura = forms.TimeField(widget=forms.TimeInput(attrs={'class': 'form-control'}))
+   horario_lectura = forms.TimeField(widget=forms.TimeInput(attrs={'class': 'form-control', 'type': 'time'}))
 
    def __init__(self, *args, **kwargs):
       super().__init__(*args, **kwargs)
