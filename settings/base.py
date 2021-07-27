@@ -29,9 +29,7 @@ LOCAL_APPS = [
    'usuarios.apps.UsuariosConfig',
 ]
 
-THIRD_PARTY = [
-    # 'location_field.apps.DefaultConfig',
-]
+THIRD_PARTY = []
 
 
 INSTALLED_APPS = DJANGO_APPS + LOCAL_APPS + THIRD_PARTY
