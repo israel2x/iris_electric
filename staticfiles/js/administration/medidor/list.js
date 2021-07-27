@@ -31,7 +31,7 @@ $(function () {
             class: 'text-center',
             orderable: false,
             render: function (data, type, row) {
-             var buttons = '<a href="suministro/medidor/edit-medidor/' + row.id + '/" class="btn btn-success btn-xs btn-flat"><i class="fas fa-edit"></i></a>';
+             var buttons = '<a href="edit/" class="btn btn-success btn-xs btn-flat"><i class="fas fa-edit"></i></a>';
              return buttons;
             }
         },
@@ -40,7 +40,7 @@ $(function () {
             class: 'text-center',
             orderable: false,
             render: function (data, type, row) {
-             buttons = '<a href="administration/medidor/' + row.id + '/detail/" class="btn btn-warning btn-xs btn-flat"><i class="nav-icon fas fa-file"></i></a>';
+             buttons = '<a href="detail/" class="btn btn-warning btn-xs btn-flat"><i class="nav-icon fas fa-file"></i></a>';
              return buttons;
             }
         },
