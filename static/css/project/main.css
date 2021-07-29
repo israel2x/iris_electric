@@ -3,7 +3,14 @@
 }
 
 
-
+.bg img{
+   z-index: -1;
+   position: fixed;
+   width: 400px;
+   height: 1000px;
+   right: 0;
+   top: 0;
+}
 
 /* Administration - Index */
 .index-title {
